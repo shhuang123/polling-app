@@ -1,47 +1,101 @@
 import React, { Component } from 'react';
 import './App.css';
-import axios from 'axios';
+import Nav from './components/Nav';
+import Vote from './components/Vote';
+import Chart from './components/Chart';
+import Form from './components/Form';
 
-
+//import Button from './components/Button';
+//const list = [ Sushi, Burger, Hot Pot, Salad]
 const list = [
   {
     id: 1,
-    question: 'I love sushi',
-    votes: 0
-  },
-  {
-    id: 2,
-    question: 'Give me lot of wasabii',
-    votes: 0
-  },
-  {
-    id: 3,
-    question: 'Dragon roll.. meh',
-    votes: 0
-  },
-  {
-    id: 4,
-    question: 'Give me Super Duper',
-    votes: 0
-  },
+    question: 'What is your favorite food?',
+    avotes: 0,
+    bvotes: 0,
+    cvotes: 0,
+    dvotes: 0
+  }
 ]
 
 class App extends Component {
-  state = {
-    questions: []
-  };
+  constructor() {
+    super();
+    this.state = {
+      showForm: false,
+      questions: [],
+      //places
+      //vote for each one
+      
+    };
+  }
 
-
+  toggleForm = () => {
+    this.setState({
+      showForm: ! this.state.showForm
+    });
+  }
 
   componentDidMount () {
     this.setState({ questions: list });
   }
 
-  handleEvent = questionsId => {
+  aVote = questionsId => {
     const updatedList = this.state.questions.map(questions => {
       if (questions.id === questionsId) {
         return Object.assign({}, questions, {
-          votes: questions.votes + 1
+          avotes: questions.avotes + 1
+        });
+      }
+      else {
+        return questions;
+      }
+    });
+
+    this.setState({
+      questions: updatedList
+    });
+  };
+
+  bVote = questionsId => {
+    const updatedList = this.state.questions.map(questions => {
+      if (questions.id === questionsId) {
+        return Object.assign({}, questions, {
+          bvotes: questions.bvotes + 1
+        });
+      }
+      else {
+        return questions;
+      }
+    });
+
+    this.setState({
+      questions: updatedList
+    });
+  };
+
+  cVote = questionsId => {
+    const updatedList = this.state.questions.map(questions => {
+      if (questions.id === questionsId) {
+        return Object.assign({}, questions, {
+          cvotes: questions.cvotes + 1
+        });
+      }
+      else {
+        return questions;
+      }
+    });
+
+    this.setState({
+      questions: updatedList
+    });
+  };
+
+  dVote = questionsId => {
+    const updatedList = this.state.questions.map(questions => {
+      if (questions.id === questionsId) {
+        return Object.assign({}, questions, {
+          dvotes: questions.dvotes + 1
         });
       }
       else {
@@ -55,27 +109,34 @@ class App extends Component {
   };
 
   render() {
+    const { showForm } = this.state;
+
     return this.state.questions.map(questions =>
-      <Ask
+      <div className="App">
+      <Nav toggleForm={this.toggleForm} showForm={showForm} />
+      { showForm ? <Form /> :
+
+      <Vote
         key={questions.id}
         id={questions.id}
         question={questions.question}
-        votes={questions.votes}
-        onVote={this.handleEvent}
+        avotes={questions.avotes}
+        bvotes={questions.bvotes}
+        cvotes={questions.cvotes}
+        dvotes={questions.dvotes}
+        aVote={this.aVote}
+        bVote={this.bVote}
+        cVote={this.cVote}
+        dVote={this.dVote}
       />
-    );
-  }
-}
+      }
+      <Chart
+        legendPosition='bottom'
+      />
 
-class Ask extends Component {
-  handleClick = () => this.props.onVote(this.props.id);
 
-  render() {
-    return (
-    <div className="App">
-      {this.props.question} <button onClick={this.handleClick}>+</button>
-      {this.props.votes}
-    </div>
+
+      </div>
     );
   }
 }
