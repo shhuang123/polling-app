@@ -10,92 +10,86 @@ import Form from './components/Form';
 const list = [
   {
     id: 1,
-    question: 'What is your favorite food?',
-    avotes: 0,
-    bvotes: 0,
-    cvotes: 0,
-    dvotes: 0
-  }
+    question: 'Sushi',
+    votes: 0
+  },
+  {
+    id: 2,
+    question: 'Buger',
+    votes: 0
+  },
+  {
+    id: 3,
+    question: 'Hot Pot',
+    votes: 0
+  },
+  {
+    id: 4,
+    question: 'Salad',
+    votes: 0
+  },
 ]
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      showForm: false,
       questions: [],
+      chartData: {},
+
       //places
       //vote for each one
-      
     };
   }
 
-  toggleForm = () => {
-    this.setState({
-      showForm: ! this.state.showForm
-    });
-  }
-
   componentDidMount () {
-    this.setState({ questions: list });
+    this.setState({
+      questions: list
+    });
   }
 
-  aVote = questionsId => {
-    const updatedList = this.state.questions.map(questions => {
-      if (questions.id === questionsId) {
-        return Object.assign({}, questions, {
-          avotes: questions.avotes + 1
-        });
-      }
-      else {
-        return questions;
-      }
-    });
+  componentWillMount(){
+    this.getChartData();
+  }
 
+  getChartData(){
     this.setState({
-      questions: updatedList
+      chartData:{
+        labels: ['Sushi', 'Burger', 'Hot Pot', 'Salad'],
+        datasets: [
+          {
+            label:'Votes',
+            data: [25, 180, 35, 232],
+            backgroundColor: [
+              'rgba(255,99,132,0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(75, 206, 86, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+            ],
+            borderColor: [
+              'rgba(255,99,132,1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(75, 206, 86, 1)',
+              'rgba(153, 102, 255, 1)',
+            ],
+            borderWidth: 1.5,
+            hoverBackgroundColor: [
+              'rgba(255,99,132,0.4)',
+              'rgba(54, 162, 235, 0.4)',
+              'rgba(75, 206, 86, 0.4)',
+              'rgba(153, 102, 255, 0.4)',
+            ]
+          }
+        ]
+      }
     });
-  };
+  }
 
-  bVote = questionsId => {
+  Vote = questionsId => {
     const updatedList = this.state.questions.map(questions => {
       if (questions.id === questionsId) {
         return Object.assign({}, questions, {
-          bvotes: questions.bvotes + 1
-        });
-      }
-      else {
-        return questions;
-      }
-    });
-
-    this.setState({
-      questions: updatedList
-    });
-  };
-
-  cVote = questionsId => {
-    const updatedList = this.state.questions.map(questions => {
-      if (questions.id === questionsId) {
-        return Object.assign({}, questions, {
-          cvotes: questions.cvotes + 1
-        });
-      }
-      else {
-        return questions;
-      }
-    });
-
-    this.setState({
-      questions: updatedList
-    });
-  };
-
-  dVote = questionsId => {
-    const updatedList = this.state.questions.map(questions => {
-      if (questions.id === questionsId) {
-        return Object.assign({}, questions, {
-          dvotes: questions.dvotes + 1
+          votes: questions.votes + 1
         });
       }
       else {
@@ -109,33 +103,22 @@ class App extends Component {
   };
 
   render() {
-    const { showForm } = this.state;
-
     return this.state.questions.map(questions =>
-      <div className="App">
-      <Nav toggleForm={this.toggleForm} showForm={showForm} />
-      { showForm ? <Form /> :
 
+      <div className="App">
+      <Nav />
+      <Form />
       <Vote
         key={questions.id}
         id={questions.id}
         question={questions.question}
-        avotes={questions.avotes}
-        bvotes={questions.bvotes}
-        cvotes={questions.cvotes}
-        dvotes={questions.dvotes}
-        aVote={this.aVote}
-        bVote={this.bVote}
-        cVote={this.cVote}
-        dVote={this.dVote}
+        votes={questions.votes}
+        onVote={this.Vote}
       />
-      }
       <Chart
+        chartData={this.state.chartData}
         legendPosition='bottom'
       />
-
-
-
       </div>
     );
   }

@@ -36,6 +36,11 @@ body {
   padding-top: 10px;
   padding-left: 40px;
   padding-right: 40px;
+  padding-bottom: 40px;
+}
+
+.Form {
+  text-align: center;
 }
 
 .nav-container {
@@ -84,7 +89,6 @@ body {
   border-radius: 20px;
   transition: all 0.2s ease-in;
   cursor: pointer;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.45);
   position: absolute;
   top: 100px;
   right: 40px;
