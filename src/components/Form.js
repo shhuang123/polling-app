@@ -5,7 +5,6 @@ class Form extends React.Component {
     super(props)
     this.state = {
         myQuestion: '',
-        myOptions: ''
     }
   }
 
@@ -29,11 +28,11 @@ class Form extends React.Component {
           <h1>Question: {myQuestion}</h1>
           <form onSubmit={this.handleSubmit}>
             <p><input type='text'
-                      placeholder='Ask Question'
+                      placeholder='Create Question Here'
                       value={myQuestion}
                       question='myQuestion'
                       onChange={this.handleQuestionChange}/></p>
-            <p><button>Send Question</button></p>
+            <p><button>Submit Question</button></p>
           </form>
         </div>
       )

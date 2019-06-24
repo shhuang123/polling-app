@@ -10,22 +10,22 @@ import Form from './components/Form';
 const list = [
   {
     id: 1,
-    question: 'Sushi',
+    myOption: 'Sushi',
     votes: 0
   },
   {
     id: 2,
-    question: 'Buger',
+    myOption: 'Buger',
     votes: 0
   },
   {
     id: 3,
-    question: 'Hot Pot',
+    myOption: 'Hot Pot',
     votes: 0
   },
   {
     id: 4,
-    question: 'Salad',
+    myOption: 'Salad',
     votes: 0
   },
 ]
@@ -34,21 +34,18 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      questions: [],
+      myOptions: [],
       chartData: {},
-
-      //places
-      //vote for each one
     };
   }
 
   componentDidMount () {
     this.setState({
-      questions: list
+      myOptions: list
     });
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.getChartData();
   }
 
@@ -58,7 +55,6 @@ class App extends Component {
         labels: ['Sushi', 'Burger', 'Hot Pot', 'Salad'],
         datasets: [
           {
-            label:'Votes',
             data: [25, 180, 35, 232],
             backgroundColor: [
               'rgba(255,99,132,0.2)',
@@ -72,7 +68,7 @@ class App extends Component {
               'rgba(75, 206, 86, 1)',
               'rgba(153, 102, 255, 1)',
             ],
-            borderWidth: 1.5,
+            borderWidth: 1,
             hoverBackgroundColor: [
               'rgba(255,99,132,0.4)',
               'rgba(54, 162, 235, 0.4)',
@@ -85,39 +81,37 @@ class App extends Component {
     });
   }
 
-  Vote = questionsId => {
-    const updatedList = this.state.questions.map(questions => {
-      if (questions.id === questionsId) {
-        return Object.assign({}, questions, {
-          votes: questions.votes + 1
+  Vote = myOptionsId => {
+    const updatedList = this.state.myOptions.map(myOptions => {
+      if (myOptions.id === myOptionsId) {
+        return Object.assign({}, myOptions, {
+          votes: myOptions.votes + 1
         });
       }
       else {
-        return questions;
+        return myOptions;
       }
     });
 
     this.setState({
-      questions: updatedList
+      myOptions: updatedList
     });
   };
 
   render() {
-    return this.state.questions.map(questions =>
+    return this.state.myOptions.map((myOptions) =>
 
-      <div className="App">
+      <div className="App" key={myOptions.id}>
       <Nav />
       <Form />
       <Vote
-        key={questions.id}
-        id={questions.id}
-        question={questions.question}
-        votes={questions.votes}
+        id={myOptions.id}
+        myOption={myOptions.myOption}
+        votes={myOptions.votes}
         onVote={this.Vote}
       />
       <Chart
         chartData={this.state.chartData}
-        legendPosition='bottom'
       />
       </div>
     );
