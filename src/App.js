@@ -4,42 +4,49 @@ import Nav from './components/Nav';
 import Vote from './components/Vote';
 import Chart from './components/Chart';
 import Form from './components/Form';
+import FirebaseApp from './components/firebase';
 
-//import Button from './components/Button';
-//const list = [ Sushi, Burger, Hot Pot, Salad]
-const list = [
-  {
-    id: 1,
-    myOption: 'Sushi',
-    votes: 0
-  },
-  {
-    id: 2,
-    myOption: 'Buger',
-    votes: 0
-  },
-  {
-    id: 3,
-    myOption: 'Hot Pot',
-    votes: 0
-  },
-  {
-    id: 4,
-    myOption: 'Salad',
-    votes: 0
-  },
-]
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
+      question: 'What is your favorite food?',
       myOptions: [],
       chartData: {},
+      showForm: false,
     };
   }
 
+  toggleForm = () => {
+    this.setState({
+      showForm: ! this.state.showForm,
+    });
+  }
+
   componentDidMount () {
+    const list = [
+      {
+        id: 1,
+        myOption: 'Sushi',
+        votes: 0
+      },
+      {
+        id: 2,
+        myOption: 'Buger',
+        votes: 0
+      },
+      {
+        id: 3,
+        myOption: 'Hot Pot',
+        votes: 0
+      },
+      {
+        id: 4,
+        myOption: 'Salad',
+        votes: 0
+      },
+    ]
     this.setState({
       myOptions: list
     });
@@ -99,20 +106,30 @@ class App extends Component {
   };
 
   render() {
+    const { showForm } = this.state;
+
     return this.state.myOptions.map((myOptions) =>
 
       <div className="App" key={myOptions.id}>
-      <Nav />
-      <Form />
+      <Nav toggleForm={this.toggleForm} showForm={showForm} />
+
+      {showForm ?
+      <Form
+        submitForm={this.submitForm}
+      />
+      :
       <Vote
+        question={this.state.question}
         id={myOptions.id}
         myOption={myOptions.myOption}
         votes={myOptions.votes}
         onVote={this.Vote}
       />
+      }
       <Chart
         chartData={this.state.chartData}
       />
+
       </div>
     );
   }

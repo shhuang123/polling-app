@@ -5,6 +5,7 @@ class Form extends React.Component {
     super(props)
     this.state = {
         myQuestion: '',
+        myOptions: '',
     }
   }
 
@@ -17,12 +18,19 @@ class Form extends React.Component {
   handleQuestionChange = (event) => {
       event.preventDefault()
       this.setState({
-        myQuestion: event.target.value
+        myQuestion: event.target.value,
+     })
+  }
+
+  handleOptionChange = (event) => {
+      event.preventDefault()
+      this.setState({
+        myOptions: event.target.value,
      })
   }
 
     render () {
-      const {myQuestion} = this.state
+      const {myQuestion, myOptions} = this.state
       return (
         <div className='Form'>
           <h1>Question: {myQuestion}</h1>
@@ -32,7 +40,12 @@ class Form extends React.Component {
                       value={myQuestion}
                       question='myQuestion'
                       onChange={this.handleQuestionChange}/></p>
-            <p><button>Submit Question</button></p>
+                <input
+                  placeholder='Create Options Here'
+                  value ={myOptions}
+                  option='myOptions'
+                  onChange={this.handleOptionChange}/>
+            <p><button>Submit</button></p>
           </form>
         </div>
       )

@@ -33,6 +33,7 @@ body {
 
 .Vote {
   text-align: center;
+  font-family: 'Roboto', sans-serif;
   padding-top: 40px;
   padding-left: 40px;
   padding-right: 40px;
@@ -44,8 +45,13 @@ body {
   padding-bottom: 30px;
   padding-top: 10px;
   border-bottom: 1px solid #FCD748;
+  font-family: 'Roboto', sans-serif;
 }
 
+.Center {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
 .nav-container {
   display: flex;
   align-items: center;

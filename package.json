@@ -9,7 +9,7 @@
     "chart.js": "^2.8.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "firebase": "^6.2.1",
+    "firebase": "^6.2.3",
     "mongoose": "^5.5.15",
     "pusher": "^2.2.0",
     "react": "^16.8.6",
