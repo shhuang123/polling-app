@@ -1,60 +1,57 @@
 import React, { Component } from 'react';
 import './App.css';
-//import chart from Chart.js
-
+import Button from './components/Button';
+import Chart from './components/Chart';
 
 class App extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-      "burger": 0,
-      "salad": 0
+      choices: ['Burger', 'Sushi'],
+      addition: ''
     }
-    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleClick(){
-    const choices = this.state + 1;
+  handleChange(event) {
     this.setState({
-      choices: choices
-    });
-    console.log(this)
+      addition: event.target.value
+    })
   }
 
-  //
-  // handleClick() {
-  //   this.setState({
-  //       choices: this.state.value + 1
-  //     });
-  //   console.log(this);
-  // }
+  handleSubmit(event) {
+    event.preventDefault();
+    this.setState(prevState => ({
+      choices: [...prevState.choices, this.state.addition],
+      addition: ''
+    }))
+  }
 
-  render(){
-    const choices = this.state;
+  // change code above this line
+  render() {
+    const { choices } = this.state
+    let button = choices.map((i) => <Button key={i} name={i} />)
+
     return (
-      <div className="display">
-        {Object.keys(choices).map((choice, i) => (
-          <div>
-            <button onClick={this.handleClick} key={choice} name={choice} value={choices}>{choice}</button>
-          </div>
-        ))}
-      </div>
-    )
-  }
 
-}
+      <div>
+
+        <form onSubmit={this.handleSubmit}>
+          <p>
+            <input
+              type='text'
+              placeholder='Add a Lunch Choice'
+              value={this.state.addition}
+              onChange={this.handleChange}
+            />
+          </p>
+          <input type="submit" value="submit" className="form-control" />
+        </form>
+        {button}
+      </div>
+    );
+  }
+};
 
 export default App;
-
-// handleClick() {
-//   this.setState({
-//     burger: this.state.burger + 1,
-//     salad: this.state.salad + 1
-//   });
-//   console.log(this)
-// }
-
-// handleClick = () => {
-//   const {burger} = this.state
-//   this.setState({burger: burger + 1});
-// }
