@@ -2,54 +2,39 @@ import React, { Component } from 'react';
 import './App.css';
 import Button from './components/Button';
 import Chart from './components/Chart';
+import Display from './components/Display'
+import axios from 'axios'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      choices: ['Burger', 'Sushi'],
-      addition: ''
+      data: []
     }
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({
-      addition: event.target.value
-    })
+  componentDidMount(){
+    this.fetchData();
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    this.setState(prevState => ({
-      choices: [...prevState.choices, this.state.addition],
-      addition: ''
-    }))
+  fetchData = () => {
+    axios
+      .get('https://sharon-final-project.herokuapp.com/db')
+      .then(response => {
+        this.setState(prevState => ({
+          data: [...prevState.data, response.data.choices]
+        }))
+        console.log(this.state.data[0]);
+      })
+      .catch(error => console.log('error', error))
   }
 
   // change code above this line
   render() {
-    const { choices } = this.state
-    let button = choices.map((i) => <Button key={i} name={i} />)
 
     return (
 
-      <div>
-
-        <form onSubmit={this.handleSubmit}>
-          <p>
-            <input
-              type='text'
-              placeholder='Add a Lunch Choice'
-              value={this.state.addition}
-              onChange={this.handleChange}
-            />
-          </p>
-          <input type="submit" value="submit" className="form-control" />
-        </form>
-        {button}
-      </div>
+      <Display selections={this.state.data[0]}/>
     );
   }
 };
