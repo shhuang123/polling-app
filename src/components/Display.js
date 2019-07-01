@@ -32,20 +32,23 @@ class Form extends React.Component {
       let button = choices.map((i) => <Button key={i} name={i} />)
       return (
         <div>
-        {this.props.selections}
-        <form onSubmit={this.handleSubmit}>
+          <div className="question">What is your favorite food?</div>
+        <br />
+        {button}
+        <form onSubmit={this.handleSubmit} className="left">
+          {this.props.selections}
           <p>
-            <input
+            <input className="field"
               type='text'
-              placeholder='Add a Lunch Choice'
+              placeholder='Add More Choices'
               value={this.state.addition}
               onChange={this.handleChange}
             />
           </p>
-          <input type="submit" value="submit" className="form-control" />
+          <input type="submit" value="submit" className="field-button" />
         </form>
-        {button}
-      </div>
+
+        </div>
       )
     }
   }

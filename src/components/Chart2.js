@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { Component } from 'react';
 import { Bar } from 'react-chartjs-2'
 
-class Chart extends React.Component{
+class Chart extends Component{
   constructor(props){
     super(props);
     this.state = {
@@ -11,8 +11,7 @@ class Chart extends React.Component{
 
   static defaultProps = {
     displayTitle:true,
-    displayLegent: true,
-    legendPosition:'left'
+    displayLegent: false,
   }
 
   render(){
@@ -47,3 +46,33 @@ class Chart extends React.Component{
 }
 
 export default Chart;
+
+
+
+
+
+
+
+    <Bar
+      data={chartData}
+      options={{
+        maintainAspectRatio: true,
+        title:{
+          display:this.props.displayTitle,
+          text:'Results',
+          fontSize:18
+        },
+        legend:{
+          display: true,
+          position:'left'
+        },
+        layout: {
+          padding: {
+              left: 50,
+              right: 50,
+              top: 50,
+              bottom: 50
+          }
+        }
+      }}
+    />

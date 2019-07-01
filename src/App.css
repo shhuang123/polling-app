@@ -20,7 +20,6 @@ html, body {
 
 body {
   font-family: 'Roboto', sans-serif;
-  font-size: 14px;
   line-height: 1.5;
   word-wrap: break-word;
   text-rendering: optimizeLegibility;
@@ -31,31 +30,20 @@ body {
   color: #333;
 }
 
-.Vote {
-  text-align: center;
+.left{
+  text-align: left;
+  font-size: 20px;
   font-family: 'Roboto', sans-serif;
-  padding-top: 40px;
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-bottom: 40px;
-}
-
-.Form {
-  text-align: center;
-  padding-bottom: 30px;
-  padding-top: 10px;
-  border-bottom: 1px solid #FCD748;
-  font-family: 'Roboto', sans-serif;
-}
-
-.Center {
-  text-align: center;
-  font-family: 'Roboto', sans-serif;
+  margin-left: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .nav-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   height: 70px;
   background-color: #FCD748;
   box-shadow: 0 1px 10px rgba(0,0,0,0.1);
@@ -77,7 +65,6 @@ body {
 .nav-logo {
   color: #333;
   font-size: 2em;
-
   float: left;
   cursor: pointer;
   animation-name: move;
@@ -87,24 +74,64 @@ body {
 
 .nav-button {
   display: flex;
-  align-items: center;
   justify-content: center;
   font-family: 'Roboto', sans-serif;
-  padding: 10px;
+  margin-left: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 2px;
   background-color: #FCD748;
   color: black;
-  float: right;
-  font-size: 1.2em;
-  border-radius: 20px;
+  font-size: 1.02em;
+  border-radius: 5px;
   transition: all 0.2s ease-in;
   cursor: pointer;
   position: absolute;
-  top: 100px;
-  right: 40px;
   z-index: 10;
 }
 
 .nav-button:hover {
   background: #C5A623;
   box-shadow: 0 2px 6px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.24);
+}
+
+.question {
+  display: flex;
+  text-align: left;
+  font-size: 25px;
+  font-family: 'Roboto', sans-serif;
+  padding-top: 20px;
+  margin-left: 40px;
+}
+
+.field {
+  width: 20%;
+  height: 56px;
+  border-radius: 4px;
+  font-size: 15px;
+  position: relative;
+  background-color: rgba(255,255,255,0.3);
+  transition: 0.3s all;
+}
+.field:hover {
+  background-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
+}
+
+.field-button {
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #FCD748;
+  color: black;
+  font-size: 1.02em;
+  border-radius: 5px;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+  position: absolute;
 }

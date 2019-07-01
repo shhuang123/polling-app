@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import Button from './components/Button';
-import Chart from './components/Chart';
-import Display from './components/Display'
+import Nav from './components/Nav';
+//import Button from './components/Button';
+//import Chart from './components/Chart';
+import Display from './components/Display';
 import axios from 'axios'
 
 class App extends Component {
@@ -33,8 +34,11 @@ class App extends Component {
   render() {
 
     return (
+      <div className="App">
+      <Nav />
+      <Display selections={this.state.data[0]} />
+      </div>
 
-      <Display selections={this.state.data[0]}/>
     );
   }
 };
