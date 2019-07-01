@@ -29,14 +29,14 @@ class Form extends React.Component {
     render () {
       const { choices } = this.state
       console.log(choices);
-      let button = choices.map((i) => <Button key={i} name={i} />)
+      let button = choices.map((i) => <Button key={i} name={i} />)//need to map the
+
       return (
         <div>
           <div className="question">What is your favorite food?</div>
         <br />
         {button}
         <form onSubmit={this.handleSubmit} className="left">
-          {this.props.selections}
           <p>
             <input className="field"
               type='text'

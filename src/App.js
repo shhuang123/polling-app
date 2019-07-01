@@ -30,7 +30,6 @@ class App extends Component {
       .catch(error => console.log('error', error))
   }
 
-  // change code above this line
   render() {
 
     return (

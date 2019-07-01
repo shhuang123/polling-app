@@ -19,15 +19,12 @@ class Button extends Component {
     });
   };
 
-  //Load a Chat.js Chart
-  //pass data per state.count as an individual bar on the graph
-
 
   render() {
     const chartData = {
       datasets: [{
         label: this.props.name,
-        data: [5000],
+        data: [this.state.count],
         backgroundColor: [
           'rgba(255,99,132,0.2)',
         ],
