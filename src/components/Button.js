@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import Display from './Display';
 //import Chart from './Chart';
 import { Bar } from 'react-chartjs-2'
 
@@ -18,7 +17,6 @@ class Button extends Component {
       count: this.state.count + 1
     });
   };
-
 
   render() {
     const chartData = {
@@ -41,7 +39,7 @@ class Button extends Component {
   return (
   <div>
     <div>
-      <button id="update-chart" className="nav-button" onClick={this.increment}>{this.props.name}: {this.state.count}</button>
+      <button className="button" onClick={this.increment}>{this.props.name}: {this.state.count}</button>
     </div>
     <Bar
       data={chartData}

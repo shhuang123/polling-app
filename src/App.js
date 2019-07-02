@@ -34,8 +34,8 @@ class App extends Component {
 
     return (
       <div className="App">
-      <Nav />
-      <Display selections={this.state.data[0]} />
+        <Nav />
+        <Display selections={this.state.data[0]} />
       </div>
 
     );

@@ -26,10 +26,26 @@ class Form extends React.Component {
     }))
   }
 
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     count: 0,
+  //   }
+  //
+  //   this.increment = this.increment.bind(this)
+  // }
+  //
+  // increment() {
+  //   this.setState({
+  //     count: this.state.count + 1
+  //   });
+  // };
+
+
     render () {
       const { choices } = this.state
       console.log(choices);
-      let button = choices.map((i) => <Button key={i} name={i} />)//need to map the
+      let button = choices.map((i) => <Button key={i} name={i} />)
 
       return (
         <div>
@@ -37,10 +53,11 @@ class Form extends React.Component {
         <br />
         {button}
         <form onSubmit={this.handleSubmit} className="left">
+          <p> Add more choices </p>
           <p>
             <input className="field"
               type='text'
-              placeholder='Add More Choices'
+              placeholder='i.e. Pad Thai!'
               value={this.state.addition}
               onChange={this.handleChange}
             />
