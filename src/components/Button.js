@@ -24,14 +24,14 @@ class Button extends Component {
         label: this.props.name,
         data: [this.state.count],
         backgroundColor: [
-          'rgba(255,99,132,0.2)',
+          'rgba(242,128,128,0.2)',
         ],
         borderColor: [
-          'rgba(255,99,132,1)',
+          'rgba(242,128,128,1)',
         ],
         borderWidth: 1,
         hoverBackgroundColor: [
-          'rgba(255,99,132,0.4)',
+          'rgba(242,128,128,0.4)',
         ],
       }]
     }

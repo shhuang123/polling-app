@@ -6,7 +6,8 @@ class Form extends React.Component {
     super(props)
     this.state = {
       choices: ['Sushi', 'Burger'],
-      addition: ''
+      addition: '',
+      count: 0
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,32 +43,32 @@ class Form extends React.Component {
   // };
 
 
-    render () {
-      const { choices } = this.state
-      console.log(choices);
-      let button = choices.map((i) => <Button key={i} name={i} />)
+  render () {
+    const { choices } = this.state
+    console.log(choices);
+    let button = choices.map((i) => <Button key={i} name={i} />)
 
-      return (
-        <div>
-          <div className="question">What is your favorite food?</div>
-        <br />
-        {button}
-        <form onSubmit={this.handleSubmit} className="left">
-          <p> Add more choices </p>
-          <p>
-            <input className="field"
-              type='text'
-              placeholder='i.e. Pad Thai!'
-              value={this.state.addition}
-              onChange={this.handleChange}
-            />
-          </p>
-          <input type="submit" value="submit" className="field-button" />
-        </form>
+    return (
+      <div>
+        <div className="question">What is your favorite food?</div>
+      <br />
+      {button}
+      <form onSubmit={this.handleSubmit} className="left">
+        <p> Add more choices </p>
+        <p>
+          <input className="field"
+            type='text'
+            placeholder='i.e. Pad Thai!'
+            value={this.state.addition}
+            onChange={this.handleChange}
+          />
+        </p>
+        <input type="submit" value="submit" className="field-button" />
+      </form>
 
-        </div>
-      )
-    }
+      </div>
+    )
   }
+}
 
 export default Form;
